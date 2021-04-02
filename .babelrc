@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      // One use-case of this: https://jestjs.io/docs/en/es6-class-mocks#mock-using-module-factory-parameter
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ]
+}

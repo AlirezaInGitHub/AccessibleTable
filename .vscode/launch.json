@@ -1,0 +1,72 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch via NPM",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "vanillaNPM"],
+      "port": 5858,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug Vanilla",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/VanillaJS/code.js",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Launch Chrome against localhost",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:1234",
+      "port": 9222,
+      "smartStep": true,
+      "webRoot": "${workspaceFolder}",
+      "sourceMapPathOverrides": {
+        "../*": "${webRoot}/*"
+      },
+      // This runs dev server before debugger
+      "preLaunchTask": "startDevServer",
+      "breakOnLoad": true,
+      "serverReadyAction": {
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Attach Chrome to debugger",
+      "type": "chrome",
+      "request": "attach",
+      "urlFilter": "http://localhost:1234",
+      "port": 9222,
+      "smartStep": true,
+      "webRoot": "${workspaceFolder}",
+      "sourceMapPathOverrides": {
+        "../*": "${webRoot}/*"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "NODE_ENV": "test",
+        "NODE_ICU_DATA": "node_modules/full-icu"
+      },
+      "args": ["${fileBasenameNoExtension}", "--config", "jest.config.js"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+      }
+    }
+  ]
+}
